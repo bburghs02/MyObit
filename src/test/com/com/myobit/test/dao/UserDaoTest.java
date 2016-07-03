@@ -71,6 +71,7 @@ public class UserDaoTest extends TestCase {
         testUser.addAuthority(new Authority("ROLE_ADMIN"));
         assertEquals("user doesn't have two authorities",2,testUser.getAuthorities().size());
         testUser.removeAuthority(UserUtils.ROLE_ADMIN);
+        assertEquals("user has more than one authority",1,testUser.getAuthorities().size());
 
     }
 }
