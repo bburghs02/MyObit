@@ -45,4 +45,18 @@ public class PersonDaoImpl extends AbstractBaseDao<Person> implements PersonDao{
         primary.getPrimaryRelationships().add(relationship);
         this.update(primary);
     }
+
+    public void removeRelationship(Person person, Relationship toRemove) {
+        if (person.getPrimaryRelationships() != null) {
+            if (person.getPrimaryRelationships().contains(toRemove)) {
+                person.getPrimaryRelationships().remove(toRemove);
+                update(person);
+            }
+        } else if (person.getSecondaryRelationships() != null) {
+            if (person.getSecondaryRelationships().contains(toRemove)) {
+                person.getSecondaryRelationships().remove(toRemove);
+                update(person);
+            }
+        }
+    }
 }

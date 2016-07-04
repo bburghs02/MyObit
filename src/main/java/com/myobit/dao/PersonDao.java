@@ -2,6 +2,7 @@ package com.myobit.dao;
 
 import com.myobit.dao.util.BaseDao;
 import com.myobit.domain.Person;
+import com.myobit.domain.Relationship;
 import com.myobit.domain.RelationshipType;
 
 /**
@@ -16,4 +17,6 @@ public interface PersonDao extends BaseDao<Person> {
     void deleteAllAddresses(Person person);
 
     void addRelationship(Person primary, Person secondary, RelationshipType relationshipType);
+
+    void removeRelationship(Person person, Relationship toRemove);
 }
