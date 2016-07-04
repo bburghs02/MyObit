@@ -1,10 +1,7 @@
 package com.myobit.test.dao;
 
 import com.myobit.dao.PersonDaoImpl;
-import com.myobit.domain.Address;
-import com.myobit.domain.AddressType;
-import com.myobit.domain.Person;
-import com.myobit.domain.User;
+import com.myobit.domain.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -129,5 +126,16 @@ public class PersonDaoTest {
     public void testAddPersonWithUser(){
         Person testPerson = personDao.getbyId(toIntExact(this.testId));
         assertEquals("test person's username is not test","test",testPerson.getUser().getUsername());
+    }
+
+    @Test
+    public void testAddRelationshipAsPrimary() {
+        Person testPerson = personDao.getbyId(toIntExact(this.testId));
+        Person mother = new Person("Mamma","Mia",null,null);
+        personDao.addRelationship(testPerson,mother,RelationshipType.CHILD);
+        assertEquals("testPerson doesn't have any relationships",1,testPerson.getPrimaryRelationships().size());
+        Person father = new Person("Pappa","Mia",null,null);
+        personDao.addRelationship(testPerson,father,RelationshipType.CHILD);
+        assertEquals("testPerson doesn't have 2 relationships",2,testPerson.getPrimaryRelationships().size());
     }
 }

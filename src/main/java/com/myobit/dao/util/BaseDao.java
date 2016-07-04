@@ -19,4 +19,6 @@ public interface BaseDao<T> {
     void update(T t);
 
     void refresh(T t);
+
+    void saveOrUpdate(T t);
 }

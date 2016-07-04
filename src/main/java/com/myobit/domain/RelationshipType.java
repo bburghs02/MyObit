@@ -24,7 +24,13 @@ public enum RelationshipType {
     NEPHEW("Nephew"),
     FRIEND("Friend");
 
-    RelationshipType(String relationshipType) {
+    private String type;
 
+    RelationshipType(String relationshipType) {
+        this.type = relationshipType;
+    }
+
+    public String getType() {
+        return type;
     }
 }

@@ -2,6 +2,8 @@ package com.myobit.dao;
 
 import com.myobit.dao.util.AbstractBaseDao;
 import com.myobit.domain.Person;
+import com.myobit.domain.Relationship;
+import com.myobit.domain.RelationshipType;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,5 +35,14 @@ public class PersonDaoImpl extends AbstractBaseDao<Person> implements PersonDao{
         for (int i = 0; i< person.getAddresses().size(); i++) {
             addressDao.delete(person.getAddresses().get(i));
         }
+    }
+
+    public void addRelationship(Person primary, Person secondary, RelationshipType relationshipType) {
+        Relationship relationship = new Relationship();
+        relationship.setPrimary(primary);
+        relationship.setSecondary(secondary);
+        relationship.setRelationshipType(relationshipType.getType());
+        primary.getPrimaryRelationships().add(relationship);
+        this.update(primary);
     }
 }

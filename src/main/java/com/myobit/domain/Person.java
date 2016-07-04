@@ -22,6 +22,8 @@ public class Person extends BaseEntity {
     private Calendar dateOfDeath;
     private List<Address> addresses;
     private User user;
+    private List<Relationship> primaryRelationships;
+    private List<Relationship> secondaryRelationships;
 
     public Person() {
     }
@@ -94,5 +96,28 @@ public class Person extends BaseEntity {
             user.setPerson(this);
         }
         this.user = user;
+    }
+
+    @OneToMany(mappedBy = "primary",fetch = FetchType.EAGER)
+    @Cascade(CascadeType.ALL)
+    public List<Relationship> getPrimaryRelationships() {
+        if (primaryRelationships == null) {
+            primaryRelationships = new ArrayList<Relationship>();
+        }
+        return primaryRelationships;
+    }
+
+    public void setPrimaryRelationships(List<Relationship> primaryRelationships) {
+        this.primaryRelationships = primaryRelationships;
+    }
+
+    @OneToMany(mappedBy = "secondary", fetch = FetchType.EAGER)
+    @Cascade(CascadeType.ALL)
+    public List<Relationship> getSecondaryRelationships() {
+        return secondaryRelationships;
+    }
+
+    public void setSecondaryRelationships(List<Relationship> secondaryRelationships) {
+        this.secondaryRelationships = secondaryRelationships;
     }
 }

@@ -72,4 +72,12 @@ public class AbstractBaseDao<T> implements BaseDao<T> {
         session.getTransaction().commit();
         session.close();
     }
+
+    public void saveOrUpdate(T t) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.saveOrUpdate(t);
+        session.getTransaction().commit();
+        session.close();
+    }
 }
