@@ -41,7 +41,7 @@ public class PersonDaoImpl extends AbstractBaseDao<Person> implements PersonDao{
         Relationship relationship = new Relationship();
         relationship.setPrimary(primary);
         relationship.setSecondary(secondary);
-        relationship.setRelationshipType(relationshipType.getType());
+        relationship.setRelationshipType(relationshipType);
         primary.getPrimaryRelationships().add(relationship);
         this.update(primary);
     }

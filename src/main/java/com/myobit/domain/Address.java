@@ -18,7 +18,6 @@ public class Address extends BaseEntity{
     private List<Person> persons;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "Type", columnDefinition = "enum('Home','Vacation','Senior Care")
     private AddressType type;
 
     public Address() {

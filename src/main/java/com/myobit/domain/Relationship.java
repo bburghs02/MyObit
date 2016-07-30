@@ -3,9 +3,7 @@ package com.myobit.domain;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by Phillip on 7/3/2016.
@@ -15,7 +13,8 @@ public class Relationship extends BaseEntity {
 
     private Person primary;
     private Person secondary;
-    private String relationshipType;
+    @Enumerated(EnumType.STRING)
+    private RelationshipType relationshipType;
     private boolean executor;
 
     @ManyToOne
@@ -29,11 +28,11 @@ public class Relationship extends BaseEntity {
         this.primary = primary;
     }
 
-    public String getRelationshipType() {
+    public RelationshipType getRelationshipType() {
         return relationshipType;
     }
 
-    public void setRelationshipType(String relationshipType) {
+    public void setRelationshipType(RelationshipType relationshipType) {
         this.relationshipType = relationshipType;
     }
 
