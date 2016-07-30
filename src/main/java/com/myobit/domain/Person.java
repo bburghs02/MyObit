@@ -24,6 +24,7 @@ public class Person extends BaseEntity {
     private User user;
     private List<Relationship> primaryRelationships;
     private List<Relationship> secondaryRelationships;
+    private List<Obituary> obituaries;
 
     public Person() {
     }
@@ -119,5 +120,18 @@ public class Person extends BaseEntity {
 
     public void setSecondaryRelationships(List<Relationship> secondaryRelationships) {
         this.secondaryRelationships = secondaryRelationships;
+    }
+
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    @Cascade(CascadeType.ALL)
+    public List<Obituary> getObituaries() {
+        if (obituaries == null) {
+            obituaries = new ArrayList<Obituary>();
+        }
+        return obituaries;
+    }
+
+    public void setObituaries(List<Obituary> obituaries) {
+        this.obituaries = obituaries;
     }
 }

@@ -138,4 +138,15 @@ public class PersonDaoTest {
         personDao.addRelationship(testPerson,father,RelationshipType.CHILD);
         assertEquals("testPerson doesn't have 2 relationships",2,testPerson.getPrimaryRelationships().size());
     }
+
+    @Test
+    public void testAddObituary() {
+        Person testPerson = personDao.getbyId(toIntExact(this.testId));
+        Obituary obituary = new Obituary();
+        obituary.setDateAdded(Calendar.getInstance().getTime());
+        obituary.setContent("This is an obituary");
+        obituary.setStatus(ObitStatus.DRAFT);
+        testPerson.getObituaries().add(obituary);
+        assertEquals("The obituary content is incorrect","This is an obituary",testPerson.getObituaries().get(0).getContent());
+    }
 }
