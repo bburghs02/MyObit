@@ -149,4 +149,16 @@ public class PersonDaoTest {
         testPerson.getObituaries().add(obituary);
         assertEquals("The obituary content is incorrect","This is an obituary",testPerson.getObituaries().get(0).getContent());
     }
+
+    @Test
+    public void testRemoveRelationship() {
+        Person testPerson = personDao.getbyId(toIntExact(this.testId));
+        Person brother = new Person();
+        brother.setFirstName("Frere");
+        brother.setLastName("Jacques");
+        personDao.addRelationship(testPerson,brother,RelationshipType.BROTHER);
+        assertEquals("test person has more than one relationship", 1, testPerson.getPrimaryRelationships().size());
+        personDao.removeRelationship(testPerson,testPerson.getPrimaryRelationships().get(0));
+        assertEquals("test person doesn't have 0 relationships",0,testPerson.getPrimaryRelationships().size());
+    }
 }

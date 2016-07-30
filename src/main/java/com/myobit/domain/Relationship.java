@@ -17,6 +17,16 @@ public class Relationship extends BaseEntity {
     private RelationshipType relationshipType;
     private boolean executor;
 
+    public Relationship() {
+
+    }
+
+    public Relationship(Person primary, Person secondary, RelationshipType relationshipType) {
+        this.primary = primary;
+        this.secondary = secondary;
+        this.relationshipType = relationshipType;
+    }
+
     @ManyToOne
     @JoinColumn(name = "PrimaryId")
     @Cascade(CascadeType.ALL)
