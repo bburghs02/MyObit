@@ -19,7 +19,7 @@ public class Address extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     @Column(name = "Type", columnDefinition = "enum('Home','Vacation','Senior Care")
-    private String type;
+    private AddressType type;
 
     public Address() {
     }
@@ -77,11 +77,11 @@ public class Address extends BaseEntity{
         this.zip = zip;
     }
 
-    public String getType() {
+    public AddressType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(AddressType type) {
         this.type = type;
     }
 

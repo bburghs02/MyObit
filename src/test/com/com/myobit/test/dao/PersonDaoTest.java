@@ -47,7 +47,7 @@ public class PersonDaoTest {
         testPerson.setDateOfDeath(dod);
 
         Address address = new Address("1234 Fake Street","Apartment 1","Atlanta","GA","30316");
-        address.setType(AddressType.VACATION.getType());
+        address.setType(AddressType.VACATION);
 
         ArrayList<Address> addresses = new ArrayList<Address>();
         addresses.add(address);
@@ -78,7 +78,7 @@ public class PersonDaoTest {
         Person retrievedPerson = personDao.getByFirstNameLastName("John", "Doe");
         assertEquals("First Name is not John", "John", retrievedPerson.getFirstName());
         assertEquals("Address line 1 is not 1234 Fake Street","1234 Fake Street",retrievedPerson.getAddresses().get(0).getLine1());
-        assertEquals("Address is not a vacation address",AddressType.VACATION.getType(),retrievedPerson.getAddresses().get(0).getType());
+        assertEquals("Address is not a vacation address",AddressType.VACATION,retrievedPerson.getAddresses().get(0).getType());
         assertEquals("DoB is not 1950",1950,retrievedPerson.getDateOfBirth().get(Calendar.YEAR));
     }
 
@@ -93,7 +93,7 @@ public class PersonDaoTest {
     public void testPersonWithMultipleAddresses() {
         Person retrievedPerson = personDao.getByFirstNameLastName("John","Doe");
         Address secondAddress = new Address("555 blah","apartment blah","Skokie","IL","12345");
-        secondAddress.setType(AddressType.HOME.getType());
+        secondAddress.setType(AddressType.HOME);
         retrievedPerson.getAddresses().add(secondAddress);
         personDao.update(retrievedPerson);
         retrievedPerson = personDao.getByFirstNameLastName("John","Doe");
